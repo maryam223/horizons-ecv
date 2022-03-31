@@ -2,6 +2,7 @@ body{
     color: #BBAACC!important;
     background-image: url(https://horizons-ecv.netlify.app/julentto-photography-CIuakYIjadc-unsplash%201.png);
     background-size: cover;
+    background-position-y: 50px;
 }
 
 h1{
