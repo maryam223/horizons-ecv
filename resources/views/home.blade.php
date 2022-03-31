@@ -6,15 +6,19 @@
     <meta name="description" content="">
     <title>Horizons</title>
 
-    
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/home.css') }}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
 </head>
 <body style="padding-top: 5rem; ">
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">
-            <img src="https://horizons-ecv.netlify.app/logo-horizons.png" style="max-height: 50px">
+            <img src="https://horizons-ecv.netlify.app/logo-horizons.png" style="max-height: 32px">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +41,7 @@
 <main role="main" class="container">
 
     <div style="padding: 3rem 1.5rem;">
-        <h1>Planifiez.Voyagez.</h1>
+        <h1 style="font-family: 'Mrs Saint Delafield', cursive;">Planifiez.Voyagez.</h1>
         <p></p>
     </div>
 
