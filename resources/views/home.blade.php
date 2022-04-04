@@ -28,6 +28,12 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="/random-country">Random Country</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/notes">Notes</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/login">Se Connecter</a>
                 </li>
                 <li class="nav-item">

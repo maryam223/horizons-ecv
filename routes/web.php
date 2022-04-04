@@ -22,3 +22,11 @@ Route::get('/', [IndexController::class, 'index']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/random-country', function () {
+    return view('random-country');
+});
+
+Route::get('/notes', function () {
+    return view('notes');
+});
