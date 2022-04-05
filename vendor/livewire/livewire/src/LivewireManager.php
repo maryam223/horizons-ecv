@@ -231,7 +231,7 @@ HTML;
 
         $jsLivewireToken = app()->has('session.store') ? "'" . csrf_token() . "'" : 'null';
 
-        $manifest = json_decode(file_get_contents(__DIR__.'/../dist/mix-manifest.json'), true);
+        $manifest = json_decode(file_get_contents(__DIR__.'/../dist/manifest.json'), true);
         $versionedFileName = $manifest['/livewire.js'];
 
         // Default to dynamic `livewire.js` (served by a Laravel route).
@@ -241,8 +241,8 @@ HTML;
         $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
 
         // Use static assets if they have been published
-        if (file_exists(public_path('vendor/livewire/mix-manifest.json'))) {
-            $publishedManifest = json_decode(file_get_contents(public_path('vendor/livewire/mix-manifest.json')), true);
+        if (file_exists(public_path('vendor/livewire/manifest.json'))) {
+            $publishedManifest = json_decode(file_get_contents(public_path('vendor/livewire/manifest.json')), true);
             $versionedFileName = $publishedManifest['/livewire.js'];
 
             $fullAssetPath = ($this->isRunningServerless() ? config('app.asset_url') : $assetsUrl).'/vendor/livewire'.$versionedFileName;
