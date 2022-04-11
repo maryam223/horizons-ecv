@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -10,8 +10,26 @@
             @csrf
 
             <div>
-                <x-jet-label for="name" value="{{ __('Nom') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <h1 class="font-semibold text-2xl flex justify-center">Inscription</h1>
+            </div>
+            <div class="flex justify-center">
+                <h3 class="font-semibold text-xs">Déja inscrit ? </h3>
+                <a href="/login" class="font-semibold text-xs text-indigo-500 underline">Connexion</a>
+            </div>
+            <div class="flex justify-center">
+                <div>
+                    <x-jet-label for="last_name" value="{{ __('Nom') }}" />
+                    <x-jet-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="family-name" />
+                </div>
+
+                <div>
+                    <x-jet-label for="name" value="{{ __('Prénom') }}" />
+                    <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                </div>
+            </div>
+            <div>
+                <x-jet-label for="nb_trip" value="{{ __('Nombre de voyages effectués') }}" />
+                <x-jet-input id="nb_trip" class="block mt-1 w-full" type="number" min="0" name="nb_trip" :value="old('nb_trip')" required autofocus />
             </div>
 
             <div class="mt-4">
@@ -46,13 +64,9 @@
                 </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Vous avez déjà un compte?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('S\'inscrire') }}
+            <div class="w-full mt-4">
+                <x-jet-button class="block mt-1 w-full">
+                    {{ __('Créer mon compte') }}
                 </x-jet-button>
             </div>
         </form>
