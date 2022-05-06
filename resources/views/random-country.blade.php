@@ -4,7 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Random Country</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,10 +20,153 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                font-size: 15px;
+                color: #333;
+                background-color: #eee;
+            }
+            h1,h2,h3 {
+                text-align: center;
+            }
+            #main-container {
+            width: 502px;
+            margin: 30px auto;
+            padding: 0;
+            }
+            #flag-container {
+            height: 252px;
+            background-color: #fff;
+            border: 1px solid #333;
+            }
+            #flag-container img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            }
+            #info-container select {
+            display: block;
+            margin: 20px auto;
+            padding: 5px;
+            min-width: 100%;
+            color: #333;
+            font-size: 15px;
+            font-weight: 900;
+            text-align-last: center;
+            }
+            #info-container p {
+            padding: 0 10px;
+            font-weight: 600;
+            }
+            #info-container p span {
+            font-weight: normal;
+            }
+
+            @media (max-width: 768px) {
+            body { font-size: 12px; }
+            #main-container { width: 342px; }  
+            #flag-container { height: 172px; }  
+            #info-container select { font-size: 12px; font-weight: 600; }
             }
         </style>
     </head>
+
     <body class="antialiased">
-       <h1>Random country page</h1> 
-    </body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="https://horizons-ecv.netlify.app/logo-horizons.png" style="max-height: 32px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/random-country">Random Country</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/notes">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Se Connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">S'inscrire</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <h2 style="margin-top: 80px;">Quel est le prochain pays dans lequel vous devriez voyager ?</h2>
+  <div id="main-container">
+    <div id="flag-container">
+      <img src="" alt="">
+    </div>
+    <div id="info-container">
+      <select id="countries"  style="display:none;"></select>
+      <h3><span id="countryname"></span></h3>
+      <p>Capitale: <span id="capital"></span></p>
+      <p>Indicatif téléphonique: <span id="dialing-code"></span></p>
+      <p>Population: <span id="population"></span></p>
+      <p>Monnaie: <span id="currencies"></span></p>
+      <p>Continent: <span id="region"></span></p>
+      <p>Subregion: <span id="subregion"></span></p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
 </html>
+
+<script>
+    // Global Variables
+const countriesList = document.getElementById("countries");
+let countries; // will contain "fetched" data
+
+// Event Listeners
+countriesList.addEventListener("change", newCountrySelection);
+
+function newCountrySelection(event) {
+  displayCountryInfo(event.target.value);
+}
+
+fetch("https://restcountries.com/v2/all")
+.then(res => res.json())
+.then(data => initialize(data))
+.catch(err => console.log("Error:", err));
+
+function initialize(countriesData) {
+  countries = countriesData;
+  let options = "";
+
+  countries.forEach(country => options+=`<option value="${country.alpha3Code}">${country.name}</option>`);
+  
+  countriesList.innerHTML = options;
+  
+  countriesList.selectedIndex = Math.floor(Math.random()*countriesList.length);
+  displayCountryInfo(countriesList[countriesList.selectedIndex].value);
+}
+
+function displayCountryInfo(countryByAlpha3Code) {
+  const countryData = countries.find(country => country.alpha3Code === countryByAlpha3Code);
+  document.getElementById("countryname").innerHTML = countryData.translations.fr;
+  document.querySelector("#flag-container img").src = countryData.flag;
+  document.querySelector("#flag-container img").alt = `Flag of ${countryData.name}`;  
+  document.getElementById("capital").innerHTML = countryData.capital;
+  document.getElementById("dialing-code").innerHTML = `+${countryData.callingCodes[0]}`;
+  document.getElementById("population").innerHTML = countryData.population.toLocaleString("en-US");
+  document.getElementById("currencies").innerHTML = countryData.currencies.filter(c => c.name).map(c => `${c.name} (${c.code})`).join(", ");
+  document.getElementById("region").innerHTML = countryData.region;
+  document.getElementById("subregion").innerHTML = countryData.subregion;
+}
+</script>

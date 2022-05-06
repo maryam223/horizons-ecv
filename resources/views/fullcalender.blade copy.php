@@ -49,11 +49,6 @@ $(document).ready(function () {
     --------------------------------------------*/
     var calendar = $('#calendar').fullCalendar({
                     editable: true,
-                    header:{
-                        left:'prev,next today',
-                        center:'title',
-                        right:'month,agendaWeek,agendaDay'
-                    },
                     events: SITEURL + "/fullcalender",
                     displayEventTime: false,
                     editable: true,
@@ -69,8 +64,8 @@ $(document).ready(function () {
                     select: function (start, end, allDay) {
                         var title = prompt('Event Title:');
                         if (title) {
-                            var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                            var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+                            var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+                            var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
                             $.ajax({
                                 url: SITEURL + "/fullcalenderAjax",
                                 data: {
@@ -98,8 +93,8 @@ $(document).ready(function () {
                         }
                     },
                     eventDrop: function (event, delta) {
-                        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
+                        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
   
                         $.ajax({
                             url: SITEURL + '/fullcalenderAjax',

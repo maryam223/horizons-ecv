@@ -175,7 +175,7 @@
                     {{ __('Accueil') }}
                 </x-jet-responsive-nav-link>
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >
-                    {{ __('Profile') }}
+                    {{ __('Profil') }}
                 </x-jet-responsive-nav-link>
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >
                     {{ __('Agenda') }}

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FullCalenderController;
 
 /*
@@ -38,10 +39,14 @@ Route::get('/agenda', function () {
     return view('agenda');
 });
 
-Route::get('fullcalender', [FullCalenderController::class, 'index']);
-Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+Route::controller(FullCalenderController::class)->group(function(){
+    Route::get('fullcalender', 'index');
+    Route::post('fullcalenderAjax', 'ajax');
+});
 
-Route::get('/file', [FileController::class, 'index']);
-Route::post('file/upload', 'App\Http\Controllers\FileController@store')->name('file.upload');
-
-Route::post('upload', 'FileController@upload')->name('upload');
+Route::get('/uploadpage', [DocumentController::class, 'uploadpage']);
+Route::post('/uploaddocument', [DocumentController::class, 'store']);
+Route::get('/showdocument', [DocumentController::class, 'show']);
+Route::get('/download/{file}', [DocumentController::class, 'download']);
+Route::get('/view/{id}', [DocumentController::class, 'view']);
+Route::get('/delete/{id}', [DocumentController::class, 'delete']);

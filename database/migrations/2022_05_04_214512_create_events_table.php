@@ -1,9 +1,9 @@
 <?php
-
+  
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+  
 return new class extends Migration
 {
     /**
@@ -13,19 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
+        Schema::create('events', function (Blueprint $table) {
+            $table->id();
             $table->string('title');
-            $table->text('overview');
+            $table->date('start');
+            $table->date('end');
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('user_id')
-                  ->constrained('users')
-                  ->onDelete('cascade');
         });
     }
-
+  
     /**
      * Reverse the migrations.
      *
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('events');
     }
 };

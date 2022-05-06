@@ -12,19 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-{
-        Schema::create('uploads', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->string('filename');
-            $table->softDeletes();
+    {
+        Schema::create('documents', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string('file');
             $table->timestamps();
-
-            $table->foreign('user_id')
-                  ->constrained('users')
-                  ->onDelete('cascade');
         });
-}
+    }
 
     /**
      * Reverse the migrations.
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uploads');
+        Schema::dropIfExists('documents');
     }
 };
