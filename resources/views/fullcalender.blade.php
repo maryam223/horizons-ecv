@@ -4,13 +4,15 @@
     <title>Agenda</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale-all.min.js" integrity="sha512-L0BJbEKoy0y4//RCPsfL3t/5Q/Ej5GJo8sx1sDr56XdI7UQMkpnXGYZ/CCmPTF+5YEJID78mRgdqRCo1GrdVKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
@@ -20,10 +22,63 @@
     <h1>Agenda</h1>
     <div id='calendar'></div>
 </div>
+
+<!-- day click dialog-->
+<div id="dialog" style="display:none;">
+    <div id="dialog-body">
+        <form id="dayClick" method="post" action="{{route('eventStore')}}">
+            @csrf
+            <div class="form-group">
+                <label>Event Title</div>
+                <input type="text" class="form-control" name="title" placeholder="Event title">
+            </div>
+            <div class="form-group">
+                <label>Start Date/Time</label>
+                <input type="text" class="form-control" id="start" name="start" placeholder="Start date & time">
+            </div>
+            <div class="form-group">
+                <label>End Date/Time</label>
+                <input type="text" class="form-control" id="end" name="end" placeholder="End date & time">
+            </div>
+            <div class="form-group">
+                <label>All Day</label>
+                <input type="checkbox" value="1" name="allDay">All Day
+                <input type="checkbox" value="0" name="allDay">Partial
+            </div>
+            <div class="form-group">
+                <label>Background color</label>
+                <input type="color" class="form-control" name="color">
+            </div>
+            <div class="form-group">
+                <label>Text color</label>
+                <input type="color" class="form-control" name="textColor">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Add event</button>
+            </div>
+    </div>
+</div>
+<!-- day click dialog end -->
   
 <script type="text/javascript">
   
-$(document).ready(function () {
+jQuery(document).ready(function ($) {
+
+    function convert(str){
+        const d = new Date(str);
+        let month = '' + (d.getMonth() + 1);
+        let day = '' + d.getDate();
+        let year = '' + d.getFullYear();
+        if(month.length < 2) month = '0' + month;
+        if(day.length < 2) day = '0' + day;
+        let hour = '' + d.getUTCHours();
+        let minutes = '' + d.getUTCMinutes();
+        let seconds = '' + d.getUTCSeconds();
+        if(hour.length < 2) hour = '0' + hour;
+        if(minutes.length < 2) minutes = '0' + minutes;
+        if(seconds.length < 2) seconds = '0' + seconds;
+        return [year, month,day].join('-') + ' ' + [hour,minutes].join(':');
+    };
       
     /*------------------------------------------
     --------------------------------------------
@@ -62,83 +117,19 @@ $(document).ready(function () {
                     firstDay: 1,
                     locale: 'fr',
                     height: window.innerHeight,
-                    eventRender: function (event, element, view) {
-                        if (event.allDay === 'true') {
-                                event.allDay = true;
-                        } else {
-                                event.allDay = false;
-                        }
-                    },
                     selectable: true,
                     selectHelper: true,
-                    select: function (start, end, allDay) {
-                        var title = prompt('Event Title:');
-                        if (title) {
-                            var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                            var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-                            $.ajax({
-                                url: SITEURL + "/fullcalenderAjax",
-                                data: {
-                                    title: title,
-                                    start: start,
-                                    end: end,
-                                    type: 'add'
-                                },
-                                type: "POST",
-                                success: function (data) {
-                                    displayMessage("Event Created Successfully");
-  
-                                    calendar.fullCalendar('renderEvent',
-                                        {
-                                            id: data.id,
-                                            title: title,
-                                            start: start,
-                                            end: end,
-                                            allDay: allDay
-                                        },true);
-  
-                                    calendar.fullCalendar('unselect');
-                                }
-                            });
-                        }
-                    },
-                    eventDrop: function (event, delta) {
-                        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-  
-                        $.ajax({
-                            url: SITEURL + '/fullcalenderAjax',
-                            data: {
-                                title: event.title,
-                                start: start,
-                                end: end,
-                                id: event.id,
-                                type: 'update'
-                            },
-                            type: "POST",
-                            success: function (response) {
-                                displayMessage("Event Updated Successfully");
-                            }
-                        });
-                    },
-                    eventClick: function (event) {
-                        var deleteMsg = confirm("Do you really want to delete?");
-                        if (deleteMsg) {
-                            $.ajax({
-                                type: "POST",
-                                url: SITEURL + '/fullcalenderAjax',
-                                data: {
-                                        id: event.id,
-                                        type: 'delete'
-                                },
-                                success: function (response) {
-                                    calendar.fullCalendar('removeEvents', event.id);
-                                    displayMessage("Event Deleted Successfully");
-                                }
-                            });
-                        }
-                    }
- 
+                    dayClick:function(date, event, view){
+                        $('#start').val(convert(date));
+                        $("#dialog").dialog({
+                            title:'Add Event',
+                            width:600,
+                            height:600,
+                            modal:true,
+                            show:{effect:'clip', duration:350},
+                            hide:{effect:'clip', duration:250}
+                        })
+                    }    
                 });
  
     });

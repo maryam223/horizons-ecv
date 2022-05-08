@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FullCalenderController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,10 @@ Route::get('/notes', function () {
     return view('notes');
 });
 
-Route::get('/agenda', function () {
-    return view('agenda');
-});
+Route::get('/agenda', [FullCalenderController::class, 'index']);
+Route::post('/store', [EventController::class, 'store'])->name('eventStore');
+Route::get('/index', [EventController::class, 'index'])->name('allEvent');
+
 
 Route::controller(FullCalenderController::class)->group(function(){
     Route::get('fullcalender', 'index');
