@@ -102,7 +102,7 @@
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profil') }}
                             </x-jet-dropdown-link>
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="/agenda">
                                 {{ __('Agenda') }}
                             </x-jet-dropdown-link>
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
@@ -177,7 +177,7 @@
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >
                     {{ __('Profil') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >
+                <x-jet-responsive-nav-link href="/agenda" >
                     {{ __('Agenda') }}
                 </x-jet-responsive-nav-link>
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >

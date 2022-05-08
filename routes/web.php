@@ -32,6 +32,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/agenda', [FullCalenderController::class, 'index']);
     Route::post('/store', [EventController::class, 'store'])->name('eventStore');
     Route::get('/index', [EventController::class, 'index'])->name('allEvent');
+
+    Route::get('/add-document', [DocumentController::class, 'uploadpage']);
+    Route::post('/uploaddocument', [DocumentController::class, 'store']);
+    Route::get('/documents', [DocumentController::class, 'show']);
+    Route::get('/download/{file}', [DocumentController::class, 'download']);
+    Route::get('/view/{id}', [DocumentController::class, 'view']);
+    Route::get('/delete/{id}', [DocumentController::class, 'delete']);
 });
 
 Route::get('/random-country', function () {
@@ -50,9 +57,4 @@ Route::controller(FullCalenderController::class)->group(function(){
     Route::post('fullcalenderAjax', 'ajax');
 });
 
-Route::get('/uploadpage', [DocumentController::class, 'uploadpage']);
-Route::post('/uploaddocument', [DocumentController::class, 'store']);
-Route::get('/showdocument', [DocumentController::class, 'show']);
-Route::get('/download/{file}', [DocumentController::class, 'download']);
-Route::get('/view/{id}', [DocumentController::class, 'view']);
-Route::get('/delete/{id}', [DocumentController::class, 'delete']);
+

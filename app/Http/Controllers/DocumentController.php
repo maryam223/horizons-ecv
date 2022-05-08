@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Stroage;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 use App\Models\Document;
 
@@ -26,6 +28,7 @@ class DocumentController extends Controller
 
         $data->name=$request->name;
         $data->description=$request->description;
+        $data->user_id = Auth::id();
 
         $data->save();
 
@@ -36,7 +39,9 @@ class DocumentController extends Controller
     public function show()
     {
 
-        $data=document::all();
+        $data = DB::table('documents')
+                ->where('user_id', 'like', Auth::id())
+                ->get();
         return view('showdocument', compact('data'));
     }
 
