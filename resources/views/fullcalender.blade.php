@@ -16,7 +16,7 @@
 </head>
 <body>
     
-<div class="container">
+<div class="calendar-container" style="height:100vh">
     <h1>Agenda</h1>
     <div id='calendar'></div>
 </div>
@@ -61,7 +61,7 @@ $(document).ready(function () {
                     longPressDelay: 0,
                     firstDay: 1,
                     locale: 'fr',
-                    contentHeight: 1000, 
+                    height: window.innerHeight,
                     eventRender: function (event, element, view) {
                         if (event.allDay === 'true') {
                                 event.allDay = true;
