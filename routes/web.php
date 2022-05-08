@@ -28,6 +28,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/agenda', [FullCalenderController::class, 'index']);
+    Route::post('/store', [EventController::class, 'store'])->name('eventStore');
+    Route::get('/index', [EventController::class, 'index'])->name('allEvent');
+});
+
 Route::get('/random-country', function () {
     return view('random-country');
 });
@@ -36,9 +42,7 @@ Route::get('/notes', function () {
     return view('notes');
 });
 
-Route::get('/agenda', [FullCalenderController::class, 'index']);
-Route::post('/store', [EventController::class, 'store'])->name('eventStore');
-Route::get('/index', [EventController::class, 'index'])->name('allEvent');
+
 
 
 Route::controller(FullCalenderController::class)->group(function(){

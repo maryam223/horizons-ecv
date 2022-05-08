@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('allDay');
             $table->string('color');
             $table->string('textColor');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

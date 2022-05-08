@@ -129,6 +129,7 @@ jQuery(document).ready(function ($) {
                             show:{effect:'clip', duration:350},
                             hide:{effect:'clip', duration:250}
                         })
+                        var eventSource = calendar.getEventSourceById(id);
                     }    
                 });
  

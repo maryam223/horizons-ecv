@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
+
 
 class EventController extends Controller
 {
@@ -16,7 +18,7 @@ class EventController extends Controller
     public function index()
     {
         $event = Event::Latest()->get();
-        return response()->json($event, 200);
+        return response()->json($event);
     }
 
 
@@ -45,7 +47,8 @@ class EventController extends Controller
         $allDay = $request->input('allDay');
         $color = $request->input('color');
         $textColor = $request->input('textColor');
-        $data=array('title'=>$title,"start"=>$start,"end"=>$end,"allDay"=>$allDay,"color"=>$color,"textColor"=>$textColor);
+        
+        $data=array('title'=>$title,"start"=>$start,"end"=>$end,"allDay"=>$allDay,"color"=>$color,"textColor"=>$textColor, 'user_id'=> Auth::id());
         DB::table('events')->insert($data);
 
         return redirect()->back();
