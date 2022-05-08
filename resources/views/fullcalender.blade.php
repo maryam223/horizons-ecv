@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel Fullcalender Tutorial Tutorial - ItSolutionStuff.com</title>
+    <title>Agenda</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale-all.min.js" integrity="sha512-L0BJbEKoy0y4//RCPsfL3t/5Q/Ej5GJo8sx1sDr56XdI7UQMkpnXGYZ/CCmPTF+5YEJID78mRgdqRCo1GrdVKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -16,7 +17,7 @@
 <body>
     
 <div class="container">
-    <h1>Laravel 9 FullCalender Tutorial Example - ItSolutionStuff.com</h1>
+    <h1>Agenda</h1>
     <div id='calendar'></div>
 </div>
   
@@ -57,6 +58,10 @@ $(document).ready(function () {
                     events: SITEURL + "/fullcalender",
                     displayEventTime: false,
                     editable: true,
+                    longPressDelay: 0,
+                    firstDay: 1,
+                    locale: 'fr',
+                    contentHeight: 1000, 
                     eventRender: function (event, element, view) {
                         if (event.allDay === 'true') {
                                 event.allDay = true;
