@@ -29,32 +29,31 @@
         <form id="dayClick" method="post" action="{{route('eventStore')}}">
             @csrf
             <div class="form-group">
-                <label>Event Title</div>
-                <input type="text" class="form-control" name="title" placeholder="Event title">
+                <label>Titre de l'événement</div>
+                <input type="text" class="form-control" name="title" placeholder="Ajouter un titre">
             </div>
             <div class="form-group">
-                <label>Start Date/Time</label>
-                <input type="text" class="form-control" id="start" name="start" placeholder="Start date & time">
+                <label>Date Début/Heure</label>
+                <input type="text" class="form-control" id="start" name="start" placeholder="Date Début/Heure">
             </div>
             <div class="form-group">
-                <label>End Date/Time</label>
-                <input type="text" class="form-control" id="end" name="end" placeholder="End date & time">
+                <label>Date Fin/Heure</label>
+                <input type="text" class="form-control" id="end" name="end" placeholder="Date Fin/Heure">
             </div>
             <div class="form-group">
-                <label>All Day</label>
-                <input type="checkbox" value="1" name="allDay">All Day
-                <input type="checkbox" value="0" name="allDay">Partial
+                <input type="checkbox" value="1" name="allDay">Toute la journée
+                <input type="checkbox" value="0" name="allDay">Partie de la journée
             </div>
             <div class="form-group">
-                <label>Background color</label>
+                <label>Couleur du fond</label>
                 <input type="color" class="form-control" name="color">
             </div>
             <div class="form-group">
-                <label>Text color</label>
+                <label>Couleur du texte</label>
                 <input type="color" class="form-control" name="textColor">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Add event</button>
+                <button type="submit" class="btn btn-success">Ajouter un événement</button>
             </div>
     </div>
 </div>
@@ -122,7 +121,7 @@ jQuery(document).ready(function ($) {
                     dayClick:function(date, event, view){
                         $('#start').val(convert(date));
                         $("#dialog").dialog({
-                            title:'Add Event',
+                            title:'Ajouter un événement',
                             width:600,
                             height:600,
                             modal:true,
