@@ -109,7 +109,7 @@
       <p>Population: <span id="population"></span></p>
       <p>Monnaie: <span id="currencies"></span></p>
       <p>Continent: <span id="region"></span></p>
-      <p>Subregion: <span id="subregion"></span></p>
+      <!-- <p>Subregion: <span id="subregion"></span></p> -->
     </div>
   </div>
 
@@ -164,6 +164,6 @@ function displayCountryInfo(countryByAlpha3Code) {
   document.getElementById("population").innerHTML = countryData.population.toLocaleString("en-US");
   document.getElementById("currencies").innerHTML = countryData.currencies.filter(c => c.name).map(c => `${c.name} (${c.code})`).join(", ");
   document.getElementById("region").innerHTML = countryData.region;
-  document.getElementById("subregion").innerHTML = countryData.subregion;
+  //document.getElementById("subregion").innerHTML = countryData.subregion;
 }
 </script>
