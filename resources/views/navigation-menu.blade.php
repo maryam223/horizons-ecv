@@ -96,7 +96,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="/">
                                 {{ __('Accueil') }}
                             </x-jet-dropdown-link>
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
@@ -105,10 +105,10 @@
                             <x-jet-dropdown-link href="/agenda">
                                 {{ __('Agenda') }}
                             </x-jet-dropdown-link>
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="/documents">
                                 {{ __('Documents') }}
                             </x-jet-dropdown-link>
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="/budget">
                                 {{ __('Budget') }}
                             </x-jet-dropdown-link>
 
@@ -171,7 +171,7 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >
+                <x-jet-responsive-nav-link href="/" >
                     {{ __('Accueil') }}
                 </x-jet-responsive-nav-link>
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >
@@ -180,10 +180,10 @@
                 <x-jet-responsive-nav-link href="/agenda" >
                     {{ __('Agenda') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" >
+                <x-jet-responsive-nav-link href="/documents" >
                     {{ __('Documents') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}">
+                <x-jet-responsive-nav-link href="/budget">
                     {{ __('Budget') }}
                 </x-jet-responsive-nav-link>
 

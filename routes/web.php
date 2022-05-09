@@ -6,6 +6,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\BudgetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/download/{file}', [DocumentController::class, 'download']);
     Route::get('/view/{id}', [DocumentController::class, 'view']);
     Route::get('/delete/{id}', [DocumentController::class, 'delete']);
+
+    Route::get('/budget', [BudgetController::class, 'index']);
+    Route::post('/storebudget', [BudgetController::class, 'store']);
+
 });
 
 Route::get('/random-country', function () {
@@ -48,8 +53,6 @@ Route::get('/random-country', function () {
 Route::get('/notes', function () {
     return view('notes');
 });
-
-
 
 
 Route::controller(FullCalenderController::class)->group(function(){
