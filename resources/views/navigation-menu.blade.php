@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-jet-application-mark class="block h-9 w-auto" style="display:none;" />
+                        <img src="https://horizons-ecv.netlify.app/logo-horizons.png" width="140px">
                     </a>
                 </div>
 

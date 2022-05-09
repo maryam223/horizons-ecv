@@ -7,6 +7,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,11 @@ use App\Http\Controllers\BudgetController;
 
 Route::get('/', [IndexController::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');;
+
     Route::get('/agenda', [FullCalenderController::class, 'index']);
     Route::post('/store', [EventController::class, 'store'])->name('eventStore');
     Route::get('/index', [EventController::class, 'index'])->name('allEvent');
