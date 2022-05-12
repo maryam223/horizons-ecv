@@ -28,11 +28,12 @@ class DocumentController extends Controller
 
         $data->name=$request->name;
         $data->description=$request->description;
+        $data->type_doc=$request->type_doc;
         $data->user_id = Auth::id();
 
         $data->save();
 
-        return redirect()->back();
+        return redirect('/documents');
 
     }
 
@@ -63,6 +64,6 @@ class DocumentController extends Controller
 
         $data=Document::find($id);
         $data->delete();
-        return redirect()->back();
+        return redirect('/documents');
     }
 }

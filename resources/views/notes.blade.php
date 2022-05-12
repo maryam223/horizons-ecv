@@ -22,5 +22,7 @@
     </head>
     <body class="antialiased">
        <h1>Notes page</h1> 
+
+       <div data-udata-dataset="5ed1175ca00bbe1e4941a46a"></div><script data-udata="https://www.data.gouv.fr/" src="https://static.data.gouv.fr/static/oembed.js" async defer></script>
     </body>
 </html>

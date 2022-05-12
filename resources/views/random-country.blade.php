@@ -109,7 +109,9 @@
       <p>Population: <span id="population"></span></p>
       <p>Monnaie: <span id="currencies"></span></p>
       <p>Continent: <span id="region"></span></p>
-      <!-- <p>Subregion: <span id="subregion"></span></p> -->
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary" id="lancer">Lancer</button>
     </div>
   </div>
 
@@ -128,13 +130,18 @@
 <script>
     // Global Variables
 const countriesList = document.getElementById("countries");
+const lancer = document.getElementById("lancer");
 let countries; // will contain "fetched" data
 
 // Event Listeners
 countriesList.addEventListener("change", newCountrySelection);
+lancer.addEventListener("click", newCountrySelection);
 
 function newCountrySelection(event) {
-  displayCountryInfo(event.target.value);
+    fetch("https://restcountries.com/v2/all")
+.then(res => res.json())
+.then(data => initialize(data))
+.catch(err => console.log("Error:", err));
 }
 
 fetch("https://restcountries.com/v2/all")
@@ -163,7 +170,16 @@ function displayCountryInfo(countryByAlpha3Code) {
   document.getElementById("dialing-code").innerHTML = `+${countryData.callingCodes[0]}`;
   document.getElementById("population").innerHTML = countryData.population.toLocaleString("en-US");
   document.getElementById("currencies").innerHTML = countryData.currencies.filter(c => c.name).map(c => `${c.name} (${c.code})`).join(", ");
-  document.getElementById("region").innerHTML = countryData.region;
-  //document.getElementById("subregion").innerHTML = countryData.subregion;
+  if(countryData.region == "Africa"){
+    document.getElementById("region").innerHTML = "Afrique";
+  }else if(countryData.region == "Oceania"){
+    document.getElementById("region").innerHTML = "Océanie";
+  }else if(countryData.region == "Americas"){
+    document.getElementById("region").innerHTML = "Amérique";
+  }else if(countryData.region == "Asia"){
+    document.getElementById("region").innerHTML = "Asie";
+  }else{
+    document.getElementById("region").innerHTML = countryData.region;
+  }
 }
 </script>
