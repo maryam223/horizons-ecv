@@ -7,6 +7,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\BudgetTotalController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -42,8 +43,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/view/{id}', [DocumentController::class, 'view']);
     Route::get('/delete/{id}', [DocumentController::class, 'delete']);
 
-    Route::get('/budget', [BudgetController::class, 'index']);
-    Route::post('/storebudget', [BudgetController::class, 'store']);
+    Route::get('/budget/{id}', [BudgetController::class, 'index']);
+    Route::post('/storebudget/{id}', [BudgetController::class, 'store']);
+
+    Route::get('/newbudget', [BudgetTotalController::class, 'index']);
+    Route::post('/storenewbudget', [BudgetTotalController::class, 'store']);
 
 });
 
@@ -55,6 +59,9 @@ Route::get('/notes', function () {
     return view('notes');
 });
 
+Route::get('/menu', function () {
+    return view('menu');
+});
 
 Route::controller(FullCalenderController::class)->group(function(){
     Route::get('fullcalender', 'index');
