@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->float('amount_depense');
             $table->integer('user_id');
+            $table->integer('budget_id');
             $table->timestamps();
         });
     }

@@ -60,6 +60,11 @@
             font-weight: normal;
             }
 
+            #lancer{
+              background-color:#4a69bd;
+              border-color: #4a69bd;
+            }
+
             @media (max-width: 768px) {
             body { font-size: 12px; }
             #main-container { width: 342px; }  
@@ -96,7 +101,7 @@
     </div>
 </nav>
 
-    <h2 style="margin-top: 80px;">Quel est le prochain pays dans lequel vous devriez voyager ?</h2>
+    <h3 style="margin-top: 80px;">Quel est le prochain pays dans lequel vous devriez voyager ?</h3>
   <div id="main-container">
     <div id="flag-container">
       <img src="" alt="">
@@ -109,8 +114,9 @@
       <p>Population: <span id="population"></span></p>
       <p>Monnaie: <span id="currencies"></span></p>
       <p>Continent: <span id="region"></span></p>
+      <p>Restrctions COVID : <a href="#" id="conditions" target="_blank" style="text-decoration:underline; color:#4a69bd;">Conditions d'entrée</a></p>
     </div>
-    <div>
+    <div class="text-center">
         <button type="button" class="btn btn-primary" id="lancer">Lancer</button>
     </div>
   </div>
@@ -170,6 +176,7 @@ function displayCountryInfo(countryByAlpha3Code) {
   document.getElementById("dialing-code").innerHTML = `+${countryData.callingCodes[0]}`;
   document.getElementById("population").innerHTML = countryData.population.toLocaleString("en-US");
   document.getElementById("currencies").innerHTML = countryData.currencies.filter(c => c.name).map(c => `${c.name} (${c.code})`).join(", ");
+  document.getElementById("conditions").href=`https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/${countryData.translations.fr}/`;
   if(countryData.region == "Africa"){
     document.getElementById("region").innerHTML = "Afrique";
   }else if(countryData.region == "Oceania"){

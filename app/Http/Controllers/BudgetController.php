@@ -17,6 +17,7 @@ class BudgetController extends Controller
 
         $data = DB::table('depenses')
         ->where('user_id', 'like', Auth::id())
+        ->where('budget_id', 'like', $id)
         ->get();
 
         $budget = DB::table('budget')
@@ -37,8 +38,9 @@ class BudgetController extends Controller
         
         $title = $request->input('title');
         $amount_depense = $request->input('amount_depense');
+
         
-        $data=array('title'=>$title,"amount_depense"=>$amount_depense,'user_id'=> Auth::id());
+        $data=array('title'=>$title,"amount_depense"=>$amount_depense,'user_id'=> Auth::id(),'budget_id'=>$id);
         DB::table('depenses')->insert($data);
 
         DB::update('update budget set amount = amount + ? where user_id = ? and budget_id = ?', [$amount_depense, Auth::id(), $id]);

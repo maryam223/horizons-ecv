@@ -15,8 +15,12 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round"
+      rel="stylesheet">
 </head>
 <body>
+
+@include('menu')
     
 <div class="calendar-container" style="height:100vh">
     <h1>Agenda</h1>
@@ -34,11 +38,11 @@
             </div>
             <div class="form-group">
                 <label>Date Début/Heure</label>
-                <input type="text" class="form-control" id="start" name="start" placeholder="Date Début/Heure">
+                <input type="datetime-local" class="form-control" id="start" name="start" placeholder="Date Début/Heure">
             </div>
             <div class="form-group">
                 <label>Date Fin/Heure</label>
-                <input type="text" class="form-control" id="end" name="end" placeholder="Date Fin/Heure">
+                <input type="datetime-local" class="form-control" id="end" name="end" placeholder="Date Fin/Heure">
             </div>
             <div class="form-group">
                 <input type="checkbox" value="1" name="allDay">Toute la journée
@@ -57,8 +61,11 @@
             </div>
     </div>
 </div>
+
+
 <!-- day click dialog end -->
-  
+<div style="height:100px;"></div>
+</body>
 <script type="text/javascript">
   
 jQuery(document).ready(function ($) {

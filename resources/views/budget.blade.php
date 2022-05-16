@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round"
+      rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="{{ url('/css/application.css') }}" />
 
     <style>
 
@@ -17,19 +20,16 @@
         
 .pie {
   --p:20;
-  --b:22px;
-  --c:darkred;
+  --b:12px;
   --w:150px;
   
   width:var(--w);
   aspect-ratio:1;
   position:relative;
   display:inline-grid;
-  margin:5px;
   place-content:center;
   font-size:25px;
   font-weight:bold;
-  font-family:sans-serif;
 }
 .pie:before,
 .pie:after {
@@ -40,25 +40,20 @@
 .pie:before {
   inset:0;
   background:
-    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
-    conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+    radial-gradient(farthest-side,lightgreen 98%,#0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(lightgreen calc(var(--p)*1%),#007bff17 0);
   -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
           mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
 }
 .pie:after {
   inset:calc(50% - var(--b)/2);
-  background:var(--c);
+  background:lightgreen;
   transform:rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
 }
 .animate {
   animation:p 2s .5s both;
 }
-.no-round:before {
-  background-size:0 0,auto;
-}
-.no-round:after {
-  content:none;
-}
+
 @keyframes p {
   from{--p:0}
 }
@@ -66,7 +61,9 @@
     <title>Budget</title>
 </head>
 <body>
-    <div>
+
+@include('menu')
+    <div style="display:none;">
         <h2> Budget total :
             @foreach ($budgetTotal as $budgetTotal)
                 {{ $budgetTotal->budget_total }} euros
@@ -74,15 +71,15 @@
         </h2>
     </div>
     <div>
-        <h2> Budget dépensé :
+        <div> Budget dépensé :
         @foreach ($budget as $budget)
             {{ $budget->amount }} euros
         @endforeach
-        </h2>
+        </div>
         
     </div>
-    <div>
-    <div class="pie animate" style="--p:{{ ($budget->amount*100)/$budgetTotal->budget_total }};--c:lightgreen"> {{ $budgetTotal->budget_total }} €</div>
+    <div class="budgetpie mt-3 mb-3">
+    <div class="pie animate" style="--p:{{ ($budget->amount*100)/$budgetTotal->budget_total }};"> {{ $budgetTotal->budget_total }} €</div>
     </div>
     <div class="container">
     <form action="{{url('/storebudget',$budgetTotal->id)}}" method="post" enctype="multipart/form-data">
@@ -115,7 +112,7 @@
 <div>
 @foreach($data as $data)
 
-<ul class="list-group mb-4">
+<ul class="list-group mb-2">
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <div>
         <h4>{{$data->title}}</h4>
@@ -128,6 +125,6 @@
 
 @endforeach
 </div>
-
+<div style="height:50px;"></div>
 </body>
 </html>

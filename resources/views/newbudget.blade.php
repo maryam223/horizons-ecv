@@ -1,13 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Budget</title>
-</head>
+<html lang="fr">
+@include('head')
 <body>
     <div>
         
@@ -43,20 +36,24 @@
     <div>
         <form>
         <div>
-        <h2> Mes budgets voyages
-            @foreach ($budgetTotal as $budgetTotal)
-                <a href="{{url('/budget',$budgetTotal->id)}}">
-                    <h5>{{ $budgetTotal->title }}</h5>
-                    <p>{{ $budgetTotal->budget_total }} euros</p>
-                </a>
-             @endforeach
-        </h2>
-    </div>
-
+            <h2> Mes budgets voyages</h2>
+            <div class="mesvoyages">
+                @foreach ($budgetTotal as $budgetTotal)
+                    <div class="bg-white monbudgetvoyage">
+                    <a href="{{url('/budget',$budgetTotal->id)}}" class="text-dark">
+                        <h5 class="font-weight-bold">{{ $budgetTotal->title }}</h5>
+                        <p class="font-italic mb-0">{{ $budgetTotal->budget_total }} euros</p>
+                    </div>    
+                    </a>
+                @endforeach
+            </div>
+        </div>
         </form>
     </div>
 </div>
 
-
+@include('menu')
+<div style="height:50px;"></div>
+</body>
 </body>
 </html>

@@ -39,6 +39,7 @@
   box-shadow: 0 0 1px 0 rgba(52, 46, 173, 0.25), 0 15px 30px 0 rgba(52, 46, 173, 0.1);
   position: fixed;
   bottom: 0;
+  z-index:1111;
 }
 
 .menu-item {

@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap');
+
 body{
     background-color: #f3f4f6;
+    font-family: 'Nunito', sans-serif;
 }
 
-.container{
+.container, .monbudgetvoyage, .budgetpie{
     display: grid;
     place-items: center;
 }
@@ -21,3 +24,22 @@ h6{
     display: flex;
     justify-content: center;
 }
+
+.mesvoyages{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.monbudgetvoyage{
+    width: 100px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.monbudgetvoyage a{
+    padding: 12px 8px;
+}
+
