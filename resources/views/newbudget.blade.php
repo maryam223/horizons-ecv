@@ -2,10 +2,9 @@
 <html lang="fr">
 @include('head')
 <body>
-    <div>
-        
-        
-    </div>
+
+@include('menu-top')
+
     <div class="container">
     <form action="{{url('storenewbudget')}}" method="post" enctype="multipart/form-data">
 
@@ -54,6 +53,6 @@
 
 @include('menu')
 <div style="height:50px;"></div>
-</body>
+
 </body>
 </html>

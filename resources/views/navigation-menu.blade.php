@@ -109,7 +109,7 @@
                             <x-jet-dropdown-link href="/documents">
                                 {{ __('Documents') }}
                             </x-jet-dropdown-link>
-                            <x-jet-dropdown-link href="/budget">
+                            <x-jet-dropdown-link href="/newbudget">
                                 {{ __('Budget') }}
                             </x-jet-dropdown-link>
 
@@ -184,7 +184,7 @@
                 <x-jet-responsive-nav-link href="/documents" >
                     {{ __('Documents') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="/budget">
+                <x-jet-responsive-nav-link href="/newbudget">
                     {{ __('Budget') }}
                 </x-jet-responsive-nav-link>
 

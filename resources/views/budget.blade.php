@@ -61,7 +61,7 @@
     <title>Budget</title>
 </head>
 <body>
-
+@include('menu-top')
 @include('menu')
     <div style="display:none;">
         <h2> Budget total :

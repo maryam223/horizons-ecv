@@ -2,7 +2,7 @@
 <html lang="en">
 @include('head')
 <body>
-
+@include('menu-top')
     @include('menu')
 
     <div class="container">

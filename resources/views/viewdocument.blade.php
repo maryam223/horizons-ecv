@@ -2,6 +2,7 @@
 <html lang="en">
 @include('head')
 <body>
+@include('menu-top')
 @include('menu')
     <div class="container">
     <h5>{{$data->name}}</h5>
