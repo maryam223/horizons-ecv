@@ -101,8 +101,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Ajouter la dépense</button>
+            <div class="col-sm-10 text-center">
+                <button type="submit" class="btn btn-primary" style="background-color:#4A69BD!important;">Ajouter la dépense</button>
             </div>
         </div>      
         
