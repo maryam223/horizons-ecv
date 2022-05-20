@@ -19,7 +19,6 @@
       rel="stylesheet">
 </head>
 <body>
-
 @include('menu')
     
 <div class="calendar-container" style="height:100vh">
@@ -34,7 +33,7 @@
             @csrf
             <div class="form-group">
                 <label>Titre de l'événement</div>
-                <input type="text" class="form-control" name="title" placeholder="Ajouter un titre">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Ajouter un titre">
             </div>
             <div class="form-group">
                 <label>Date Début/Heure</label>
@@ -45,19 +44,20 @@
                 <input type="datetime-local" class="form-control" id="end" name="end" placeholder="Date Fin/Heure">
             </div>
             <div class="form-group">
-                <input type="checkbox" value="1" name="allDay">Toute la journée
+                <input type="checkbox" value="1" name="allDay" checked>Toute la journée
                 <input type="checkbox" value="0" name="allDay">Partie de la journée
             </div>
             <div class="form-group">
                 <label>Couleur du fond</label>
-                <input type="color" class="form-control" name="color">
+                <input type="color" class="form-control" id="color" name="color">
             </div>
             <div class="form-group">
                 <label>Couleur du texte</label>
-                <input type="color" class="form-control" name="textColor">
+                <input type="color" class="form-control" id="textColor" name="textColor">
             </div>
+            <input type="hidden" id="eventId" name="event_id">
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Ajouter un événement</button>
+                <button type="submit" class="btn btn-success" id="update">Ajouter un événement</button>
             </div>
     </div>
 </div>
@@ -136,7 +136,38 @@ jQuery(document).ready(function ($) {
                             hide:{effect:'clip', duration:250}
                         })
                         var eventSource = calendar.getEventSourceById(id);
-                    }    
+                    },
+                    select:function(start, end){
+                        $('#start').val(convert(start));
+                        $('#end').val(convert(end));
+                        $("#dialog").dialog({
+                            title:'Ajouter un événement',
+                            width:600,
+                            height:600,
+                            modal:true,
+                            show:{effect:'clip', duration:350},
+                            hide:{effect:'clip', duration:250}
+                        })
+                        var eventSource = calendar.getEventSourceById(id);
+                    },
+                    eventClick:function(event){
+                        $('#title').val(event.title);
+                        $('#start').val(convert(event.start));
+                        $('#end').val(convert(event.title));
+                        $('#color').val(event.color);
+                        $('#textColor').val(event.textColor);
+                        $('#eventId').val(event.id);
+                        $('#update').html('Mettre à jour');
+                        $("#dialog").dialog({
+                            title:'Modifier l\'événement',
+                            width:600,
+                            height:600,
+                            modal:true,
+                            show:{effect:'clip', duration:350},
+                            hide:{effect:'clip', duration:250}
+                        })
+                        var eventSource = calendar.getEventSourceById(id);
+                    }     
                 });
  
     });
@@ -151,6 +182,6 @@ jQuery(document).ready(function ($) {
     } 
     
 </script>
-  
+    @include('sweetalert::alert')
 </body>
 </html>

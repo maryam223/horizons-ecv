@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use DB;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
+use Alert;
 
 
 class EventController extends Controller
@@ -40,8 +42,23 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        try{
+          
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'allDay' => 'required',
+            'color' => 'required',
+            'textColor' => 'required',
+        ]);
 
-        $title = $request->input('title');
+        if($validator->failed()){
+            Alert::error("Erreur", "Un ou plusieurs champs ont été mal remplis.");
+            return redirect()->back();
+        }else{
+            if(empty($request->event_id)){  
+            $title = $request->input('title');
         $start = $request->input('start');
         $end = $request->input('end');
         $allDay = $request->input('allDay');
@@ -52,6 +69,26 @@ class EventController extends Controller
         DB::table('events')->insert($data);
 
         return redirect()->back();
+            }else{
+                Event::where('id', $request->event_id)->update([
+                    'title'=>$request->title,
+                    'start'=>$request->start,
+                    'end'=>$request->end,
+                    'allDay'=>$request->allDay,
+                    'color'=>$request->color,
+                    'textColor'=>$request->textColor
+                ]);
+                Alert::success('Mise à jour', 'Votre évenement a bien été mis à jour');
+                return redirect()->back();
+            }
+        }
+        }catch(\Exception $e){
+            Alert::error("Erreur", $e->getMessage());
+            return redirect()->back();
+        }
+        
+
+        
     }
 
     /**
