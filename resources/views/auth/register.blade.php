@@ -14,7 +14,7 @@
             </div>
             <div class="flex justify-center">
                 <h3 class="font-semibold text-xs">Déja inscrit ? </h3>
-                <a href="/login" class="font-semibold text-xs text-indigo-500 underline">Connexion</a>
+                <a href="/login" class="font-semibold text-xs bleu-horizon underline">Connexion</a>
             </div>
             <div class="flex justify-center">
                 <div>
@@ -65,7 +65,7 @@
             @endif
 
             <div class="w-full mt-4">
-                <x-jet-button class="block mt-1 w-full">
+                <x-jet-button class="block mt-1 w-full" style="background-color:#4A69BD!important;">
                     {{ __('Créer mon compte') }}
                 </x-jet-button>
             </div>

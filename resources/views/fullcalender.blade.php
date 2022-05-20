@@ -172,11 +172,6 @@ jQuery(document).ready(function ($) {
  
     });
       
-    /*------------------------------------------
-    --------------------------------------------
-    Toastr Success Code
-    --------------------------------------------
-    --------------------------------------------*/
     function displayMessage(message) {
         toastr.success(message, 'Event');
     } 

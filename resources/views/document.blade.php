@@ -3,7 +3,7 @@
 @include('head')
 <body>
 @include('menu-top')
-    @include('menu')
+@include('menu')
 
     <div class="container">
         <h2>Ajouter un fichier</h2>
@@ -56,7 +56,7 @@
 
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Envoyer</button>
+                <button type="submit" class="btn btn-primary" style="background-color:#4A69BD!important;">Envoyer</button>
             </div>
         </div>      
         
@@ -64,7 +64,8 @@
 </div>
 
 <div style="height:50px;"></div>
-</body>
 
 </body>
+
+
 </html>

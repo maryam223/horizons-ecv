@@ -25,8 +25,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Ajouter le budget pour ce voyage</button>
+            <div class="col-sm-10 text-center">
+                <button type="submit" class="btn btn-primary " style="background-color:#4A69BD!important;">Ajouter le budget pour ce voyage</button>
             </div>
         </div>      
         

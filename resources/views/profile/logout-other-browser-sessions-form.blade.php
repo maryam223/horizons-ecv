@@ -52,7 +52,7 @@
         @endif
 
         <div class="flex items-center mt-5">
-            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
+            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled" style="background-color:#4A69BD!important;">
                 {{ __('Déconnecter les autres appareils') }}
             </x-jet-button>
 
@@ -88,7 +88,7 @@
 
                 <x-jet-button class="ml-3"
                             wire:click="logoutOtherBrowserSessions"
-                            wire:loading.attr="disabled">
+                            wire:loading.attr="disabled" style="background-color:#4A69BD!important;">
                     {{ __('Déconnecter les autres appareils') }}
                 </x-jet-button>
             </x-slot>

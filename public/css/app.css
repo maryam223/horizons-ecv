@@ -2218,3 +2218,10 @@ select {
   }
 }
 
+.bleu-horizon{
+  color: #4A69BD;
+}
+
+.orange-horizon{
+  color: #FA983A;
+}

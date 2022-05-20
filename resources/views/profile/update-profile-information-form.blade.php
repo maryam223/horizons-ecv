@@ -72,7 +72,7 @@
             {{ __('Enregistrer.') }}
         </x-jet-action-message>
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+        <x-jet-button wire:loading.attr="disabled" wire:target="photo" style="background-color:#4A69BD!important;">
             {{ __('Enregistrer') }}
         </x-jet-button>
     </x-slot>

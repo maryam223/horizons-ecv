@@ -8,7 +8,7 @@
 			<span class="menu-item-label">Agenda</span>
 		</a>
 		<a href="/documents" class="menu-item">
-			<span class="material-icons-outlined">description</span>
+			<span class="material-icons-outlined" id="docmenu">description</span>
 			<span class="menu-item-label">Documents</span>
 		</a>
 		<a href="/newbudget" class="menu-item">
@@ -73,6 +73,10 @@
   font-size: 26px;
   transition: 0.25s ease;
   color: #7a7f83;
+}
+
+.material-icons-outlined.active {
+  color: #fa983a;
 }
 
 .menu-item-label {

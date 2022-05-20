@@ -15,7 +15,7 @@
     
 
     <div class="text-center mt-2">
-    <button type="button" class="btn btn-info" onclick="window.location.href='/add-document';">Ajouter un document</button>
+    <button type="button" class="btn btn-info" onclick="window.location.href='/add-document';" style="background-color:#4A69BD!important;">Ajouter un document</button>
     </div>
 </container>
 <div style="height:50px;"></div>

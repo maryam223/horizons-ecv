@@ -19,8 +19,8 @@
                 <h1 class="font-semibold text-2xl flex justify-center">Connexion</h1>
             </div>
             <div>
-                <h3 class="font-semibold text-xs flex justify-center">Tu n'as pas encore de compte ?</h3>
-                <a href="/register" class="font-semibold text-xs text-indigo-500 underline flex justify-center">Créer un compte</a>
+                <h3 class="font-semibold text-xs flex justify-center">Vous n'avez pas encore de compte ?</h3>
+                <a href="/register" class="font-semibold text-xs bleu-horizon underline flex justify-center">Créer un compte</a>
             </div>
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
@@ -41,12 +41,12 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm orange-horizon hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Mot de passe oublié ?') }}
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4" style="background-color:#4A69BD!important;">
                     {{ __('Se connecter') }}
                 </x-jet-button>
             </div>

@@ -32,7 +32,7 @@
             {{ __('Enregistrer.') }}
         </x-jet-action-message>
 
-        <x-jet-button>
+        <x-jet-button style="background-color:#4A69BD!important;">
             {{ __('Enregistrer') }}
         </x-jet-button>
     </x-slot>
